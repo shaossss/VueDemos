@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../assets/vue.js"></script>
+    <title>v-on绑定事件监听器</title>
+</head>
+<body>
+    <h1>v-on事件监听器</h1>
+    <hr>
+    <div id="app">
+        本场得分:{{count}}<br>
+        <button v-on:click="jiafen">加分</button>
+        <button @click="jianfen">减分</button>
+        <input type="text" v-on:keyup.enter="onEnter" v-model="secondCount">
+    </div>
+
+    <script>
+        var app= new Vue({
+            el:'#app',
+            data:{count:1},
+            methods:{
+                jiafen:function () {
+                    this.count++;
+                },
+                jianfen:function () {
+                    this.count--;
+                },
+                onEnter:function () {
+                    //因为文本中的内容会默认转换为字符串，所以需要parseInt()函数进行整数转换
+                    this.count = this.count + parseInt(this.secondCount);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

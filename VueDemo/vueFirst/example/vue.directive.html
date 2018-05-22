@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../assets/vue.js"></script>
+    <title>Vue.directive自定义指令</title>
+</head>
+<body>
+    <div id="app">
+        <div v-mfdir="color" id="demo">{{num}}</div>
+        <div>
+            <button @click="add">Add</button>
+        </div>
+    </div>
+
+    <script>
+        /*el:指令所绑定的元素，可以用来直接操作DOM*/
+        /*binding:一个对象，包含指令的许多信息*/
+        /*vnode:Vue编译生成的虚拟节点*/
+        Vue.directive('mfdir',function (el,binding,vnode) {
+            el.style = 'color:'+binding.value;
+        });
+        var app = new Vue({
+            el:'#app',
+            data:{
+                num:10,
+                color:'green'
+            },
+            methods:{
+                add:function () {
+                    this.num++;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

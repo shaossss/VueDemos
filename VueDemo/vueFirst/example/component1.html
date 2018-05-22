@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../assets/vue.js"></script>
+    <title>component组件1</title>
+</head>
+<body>
+    <h5>组件就是制作自定义的标签，这些标签在HTML中是没有的。</h5>
+    <hr>
+    <h5>全局化注册</h5>
+    <div id="app">
+        <jspang></jspang>
+        <panda></panda><!--这个的作用域是app2-->
+    </div>
+    <hr>
+    <h5>局部注册组件</h5>
+    <div id="app2">
+        <panda here="China"></panda>
+        <jspang from-here="XXXX"></jspang><!--这个的作用域是全局-->
+    </div>
+
+    <script>
+        //注册全局组件
+        Vue.component('jspang',{
+            template:'<div style="color:red">全局化注册的jspang标签,from {{fromHere}}</div>',
+            props:['fromHere']
+        })
+        var app = new Vue({
+            el:'#app',
+            data:{}
+        })
+
+        //局部注册组件，注意全局的component和局部components
+        var app=new Vue({
+            el:'#app2',
+            components:{
+                "panda":{
+                    template:'<div style="color: red">局部注册的panda标签，Panda from {{here}}.</div>',
+                    props:['here']
+                }
+            }
+        })
+    </script>
+</body>
+</html>

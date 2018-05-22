@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../assets/vue.js"></script>
+    <title>HelloWorld</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <hr>
+    <div id="app">{{message}}</div>
+    <span>用{{xxx}}有弊端，在网速很慢的时候或者JavaScript出错的时候，会暴露{{xxx}},所以我们用v-text解决这个问题</span>
+    <script>
+        var app = new Vue({
+            el:"#app",//与上面的id对应上
+            data:{
+                message:'Hello Vue!'
+            }
+        })
+    </script>
+</body>
+</html>

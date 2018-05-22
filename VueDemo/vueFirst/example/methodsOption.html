@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../assets/vue.js"></script>
+    <title>MethodsOption方法选项</title>
+</head>
+<body>
+    <div id="app">
+        <h5>methods中参数/$event的传递</h5>
+        {{count}}
+        <p><button @click="add(2,$event)">add</button></p>
+
+        <p><btn @click.native="add(10)">add</btn></p>
+    </div>
+    <!--出现这种情况说明代码组织不够好-->
+    <button onclick="app.add(4)">外部调用构造器里的方法</button>
+
+    <script>
+        var btn = {
+            template:'<button>封装后的add</button>'
+        }
+        var app = new Vue({
+            el:'#app',
+            data:{
+                count:1
+            },
+            components:{
+                "btn":btn
+            },
+            methods:{
+                add:function (num,event) {
+                    console.log(event);/*包含了大部分鼠标事件的属性*/
+                    if(num != ''){
+                        this.count+=num;
+                    }else{
+                        this.count++;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

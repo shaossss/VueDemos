@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../assets/vue.js"></script>
+    <title>component组件2</title>
+</head>
+<body>
+    <h5>父子组件嵌套</h5>
+    <div id="app">
+        <world></world>
+    </div>
+
+    <script>
+        /*声明一个对象，对象里就是组件的内容*/
+        var city = {
+            template:'<div>this is city!</div>'
+        }
+
+
+        var world = {
+            template:'<div><p>局部注册的world</p><city></city></div>',
+            components:{
+                "city":city
+            }
+        }
+
+        var app = new Vue({
+            el:'#app',
+            data:{
+                message:'hello Vue!'
+            },
+            /*构造器中引用*/
+            components:{
+                "world":world
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../assets/vue.js"></script>
+    <title>watch选项 监控数据</title>
+</head>
+<body>
+    <div id="app">
+        <p>今日温度：{{temperature}}</p>
+        <p>穿衣建议：{{this.suggestion}}</p>
+        <p>
+            <button @click="add">加温度</button>
+            <button @click="reduce">减温度</button>
+        </p>
+    </div>
+
+    <script>
+        var suggestion = ['T恤短袖','夹克长袖','棉衣羽绒衣'];
+        var app = new Vue({
+            el:'#app',
+            data:{
+                temperature:14,
+                suggestion:'夹克外套'
+            },
+            methods:{
+                add:function () {
+                    this.temperature+=5;
+                },
+                reduce:function () {
+                    this.temperature-=5;
+                }
+            }/*,
+            watch:{
+                temperature:function (newVal,oldVal) {
+                    if(newVal >= 26){
+                        this.suggestion = suggestion[0];
+                    }else if(newVal < 26 && newVal >= 0 ){
+                        this.suggestion = suggestion [1];
+                    }else{
+                        this.suggestion = suggestion [2];
+                    }
+                }
+            }*/
+        });
+
+        /*用实例属性写watch监控，和上面写在构造器里的方式，结果是一样的*/
+        /*这种方式使程序更加灵活*/
+        app.$watch('temperature',function (newVal,oldVal) {
+            if(newVal >= 26){
+                this.suggestion = suggestion[0];
+            }else if(newVal < 26 && newVal >= 0 ){
+                this.suggestion = suggestion [1];
+            }else{
+                this.suggestion = suggestion [2];
+            }
+        })
+    </script>
+</body>
+</html>

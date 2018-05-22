@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../assets/jquery3.1.1.js"></script>
+    <script src="../assets/vue.js"></script>
+    <title>demo2</title>
+</head>
+<body>
+    <h5>$mount&$destroy()</h5>
+    <hr>
+    <h5>扩展实例$mount</h5>
+    <div id="app">
+        {{message}}
+    </div>
+    <P><button onclick="destroy()">卸载</button></P>
+
+    <script>
+        var jsP = Vue.extend({
+            template:'<p style="color: royalblue">{{message}}</p>',
+            data:function () {
+                return {
+                    message:'Hello'
+                }
+            }
+        })
+        var vm = new jsP().$mount("#app");
+        function destroy() {
+            vm.$destroy();
+            console.log("调用了卸载的方法");
+        }
+    </script>
+</body>
+</html>

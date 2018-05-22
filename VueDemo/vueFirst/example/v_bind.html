@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../assets/vue.js"></script>
+    <title>v-bind</title>
+</head>
+<body>
+    <div id="app">
+        <img v-bind:src="imgSrc" width="200px">
+        <!--缩写-->
+        <img :src="imgSrc" width="300px">
+
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                imgSrc:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521783453278&di=bcf84186f74490e8692daf670a209682&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F35a85edf8db1cb13db230b3dd654564e92584b51.jpg'
+            }
+        })
+    </script>
+</body>
+</html>

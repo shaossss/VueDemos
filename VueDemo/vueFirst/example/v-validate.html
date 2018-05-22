@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue验证</title>
+</head>
+<body >
+<div id="app">
+    <validator name="validation">
+        <form novalidate>
+            Zip: <input type="text" v-validate:zip="['required']"><br />
+            <div>
+                <span v-if="$validation.zip.required">Zip code is required.</span>
+            </div>
+        </form>
+    </validator>
+</div>
+
+
+<script src="../assets/jquery3.1.1.js"></script>
+<script src="../assets/vue.js"></script>
+<script src="../assets/v-validator.js"></script>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data:{
+            zip:''
+        }
+    })
+</script>
+</body>
+</html>
