@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="./vue.js"></script>
+    <title>模板语法</title>
+</head>
+<body>
+    <div id="app">
+        <!--<div>{{firstName +" "+ lastName}}</div>-->
+        <div>
+            {{fullName}}
+            {{age}}
+        </div>
+        <!--<div v-text="name + ' Lee'"></div>
+        <div v-html="name + ' Lee'" :title="name"></div>-->
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                name:"Dell",
+                firstName:'Jackson',
+                lastName : 'Wang',
+                /*fullName:'Jackson Wang',*/
+                age:28
+            },
+            /*watch:{
+                firstName:function () {
+                    this.fullName = this.firstName + this.lastName;
+                }
+            }*/
+            computed:{//有缓存机制（优先使用）
+                /*fullName:function () {
+                    console.info("计算了一次");
+                    return this.firstName + this.lastName;
+                }*/
+                fullName:{
+                    get:function () {
+                        return this.firstName + this.lastName;
+                    },
+                    set:function (value) {
+                        var arr = value.split(" ");
+                        this.firstName = arr[0];
+                        this.lastName = arr[1];
+                    }
+                }
+            },
+            /*methods:{//无缓存机制
+                fullName:function () {
+                    return this.firstName + this.lastName;
+                }
+            }*/
+        })
+    </script>
+</body>
+</html>

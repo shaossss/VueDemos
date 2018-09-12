@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="./vue.js"></script>
+    <title>父子组件传值</title>
+</head>
+<body>
+    <div id="app">
+        <counter-a :count="0" @change="handleChange"></counter-a>
+        <counter-a :count="1" @change="handleChange"></counter-a>
+        <div>{{total}}</div>
+    </div>
+
+    <script>
+    var counter = {
+        props:['count'],
+        data:function(){
+            return{
+                number:this.count
+            }
+        },
+        template:'<div @click="handleClick">{{number}}</div>',
+        methods:{
+            handleClick:function () {
+                this.number++;
+                this.$emit('change',1)
+            }
+        }
+    }
+
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            total:1
+        },
+        components:{
+            'counter-a':counter
+        },
+        methods:{
+            handleChange:function (val) {
+                this.total += val;
+            }
+        }
+    })
+    </script>
+</body>
+</html>

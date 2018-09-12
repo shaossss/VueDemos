@@ -17,12 +17,12 @@
           <span class="text">{{seller.supports[0].description}}</span>
         </div>
       </div>
-      <div v-if="seller.supports" class="support-count">
+      <div v-if="seller.supports" class="support-count" @click="showDetail">
         <span class="count">{{seller.supports.length}}个</span>
         <i class="icon-keyboard_arrow_right"></i>
       </div>
     </div>
-    <div class="bulletin-wrapper">
+    <div class="bulletin-wrapper" @click="showDetail">
       <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
       <i class="icon-keyboard_arrow_right"></i>
     </div>
@@ -40,8 +40,15 @@
         type:Object
       }
     },
-    data(){
-      detailShow:false
+    data() {
+      return{
+        detailShow: false
+      }
+    },
+    methods:{
+      showDetail(){
+        this.detailShow = true
+      }
     },
     created(){
       this.classMap = ['decrease','discount','special','invoice','guarantee'];
